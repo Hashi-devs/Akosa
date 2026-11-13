@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akosa Chinaza — Artist &amp; Frontend Developer</title>
+<meta name="description" content="Akosa Chinazaekpere ThankGod — artist and frontend developer. Digital portraits, ink drawings and websites.">
+<meta property="og:title" content="Akosa Chinaza — Artist & Frontend Developer">
+<meta property="og:description" content="Digital portraits, ink drawings and websites.">
+<meta property="og:image" content="img/portrait.webp">
+<meta name="theme-color" content="#f5f2ea">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f5f2ea'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='20' fill='%23b8322a' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="img/portrait.webp" as="image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,300..700&display=swap" rel="stylesheet">
+
+<style>
+:root{--bg:#f5f2ea;--card:#ece7dc;--line:#ddd7ca;--fg:#1c1a17;--muted:#6c675e;--soft:#9a958a;--acc:#b8322a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Bricolage Grotesque',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit}
+[hidden]{display:none !important}
+h1,h2,h3,.serif{font-family:'IM Fell English',Georgia,serif;font-weight:400}
+img{max-width:100%}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:44px 1fr auto;align-items:center;padding:8px 16px;background:rgba(245,242,234,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.iconbtn{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;background:none;border:0;color:var(--fg);cursor:pointer;border-radius:10px}
+.iconbtn:hover{background:var(--card)}
+.iconbtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+.hicons{display:flex;gap:2px}
+.ico{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;color:var(--fg);border-radius:10px}
+.ico:hover{background:var(--card)}
+.ico svg{width:20px;height:20px;fill:currentColor}
+
+/* menu */
+.menu{position:fixed;inset:0;z-index:40}
+.scrim{position:absolute;inset:0;background:rgba(40,36,30,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity .3s ease}
+.sheet{position:absolute;top:0;left:0;right:0;background:#fbf9f4;border-radius:0 0 22px 22px;padding:8px 16px 18px;box-shadow:0 24px 60px rgba(40,36,30,.18);transform:translateY(-104%);transition:transform .42s cubic-bezier(.3,.7,.2,1)}
+.menu.open .scrim{opacity:1}
+.menu.open .sheet{transform:none}
+.sheet .row{display:grid;grid-template-columns:44px 1fr auto;align-items:center}
+.menu nav{display:flex;flex-direction:column;max-width:680px;margin:6px auto 0}
+.menu nav a{font-family:'IM Fell English',Georgia,serif;font-size:clamp(54px,15vw,92px);line-height:1;text-decoration:none;color:#a29d92;padding:12px 4px 18px;border-bottom:1px solid var(--line)}
+.menu nav a:last-child{border-bottom:0}
+.menu nav a:hover,.menu nav a:focus-visible{color:var(--fg)}
+.menu nav a i{font-style:italic}
+body.lock{overflow:hidden}
+
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+
+/* intro */
+.intro{padding:28px 0 12px}
+.frame{border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);aspect-ratio:4/4.4}
+.frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.intro h1{font-size:44px;line-height:1;letter-spacing:-.01em;margin:28px 0 6px}
+.intro h1 i{color:var(--acc)}
+.role{margin:0 0 22px;color:var(--muted);font-size:17px}
+.intro p.t{font-size:19px;line-height:1.6;color:#3a3732;margin:0 0 16px}
+.intro a.u{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.intro a.u:hover{color:var(--acc)}
+
+/* sections */
+section.blk{padding:72px 0 8px}
+.sh{font-size:34px;line-height:1;margin:0 0 22px;display:flex;align-items:baseline;gap:10px}
+.sh .n{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;color:var(--soft)}
+
+/* gallery teaser */
+.gt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.gt a{display:block;border-radius:12px;overflow:hidden;background:var(--card);aspect-ratio:3/5}
+.gt img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gt a:hover img{transform:scale(1.04)}
+.more{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:10px;text-decoration:none;font-size:17px}
+.more:hover{color:var(--acc)}
+
+/* experience */
+.xl{border-top:1px solid var(--line)}
+.xr{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:4px 14px;align-items:start;padding:18px 0;border-bottom:1px solid var(--line)}
+.logo{width:30px;height:30px;border-radius:50%;background:var(--fg);color:var(--bg);display:flex;align-items:center;justify-content:center;font-family:'IM Fell English',serif;font-size:17px;margin-top:1px}
+.xr .co{font-family:'IM Fell English',serif;font-size:23px;line-height:1.15}
+.xr .rl{display:block;color:var(--muted);font-size:16px;margin-top:4px}
+.xr .yr{color:var(--muted);font-size:15px;white-space:nowrap;padding-top:4px}
+.open{margin:26px 0 0;font-size:19px}
+.open a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.open a:hover{color:var(--acc)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#3f9b57;margin-right:8px;vertical-align:1px;box-shadow:0 0 0 4px rgba(63,155,87,.15)}
+
+/* project cards */
+.plist{display:flex;flex-direction:column;gap:34px}
+.pcard{display:block;text-decoration:none;color:var(--fg)}
+.art{position:relative;border-radius:18px;overflow:hidden;padding:30px 26px 0;aspect-ratio:16/12;display:flex;align-items:flex-end;transition:transform .35s ease}
+.pcard:hover .art{transform:scale(.985)}
+.win{position:relative;width:100%;height:100%;border-radius:10px 10px 0 0;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.18);display:flex;flex-direction:column}
+.bar{height:22px;display:flex;align-items:center;gap:5px;padding:0 10px;flex:none}
+.bar i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.35}
+.bar b{margin-left:10px;font-weight:400;font-size:9px;opacity:.55;letter-spacing:.02em}
+.scr{flex:1;padding:22px 22px 0;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.scr .k{font-size:9px;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+.scr .h{font-weight:700;line-height:.98;letter-spacing:-.03em}
+.scr .s{font-size:11px;opacity:.7;max-width:70%}
+.scr .btn{align-self:flex-start;font-size:10px;padding:6px 12px;border-radius:999px;margin-top:4px}
+.live{position:absolute;left:0;right:0;top:22px;bottom:0;overflow:hidden;background:inherit}
+.live iframe,.sframe iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;pointer-events:none;background:#fff;opacity:0;transition:opacity .45s ease}
+.live iframe.on,.sframe iframe.on{opacity:1}
+.cap{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;font-size:17px}
+.cap span:first-child{font-family:'IM Fell English',serif;font-size:22px}
+.cap span:last-child{color:var(--muted);font-size:15px}
+.cap small{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;color:var(--muted)}
+
+/* skills & tools */
+.ts{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.ts h3{font-size:26px;margin:0 0 10px}
+.ts p{margin:0 0 30px;color:var(--muted);font-size:18px;line-height:1.7}
+.ts p .d{color:var(--soft);padding:0 6px}
+
+/* footer */
+.foot{margin-top:56px;border-top:1px solid var(--line);overflow:hidden}
+.frow{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;font-size:15px;color:var(--muted);border-bottom:1px solid var(--line)}
+.big{margin:14px 0 0;font-family:'IM Fell English',Georgia,serif;font-style:italic;font-size:30vw;line-height:1.1;text-align:center;white-space:nowrap;user-select:none;color:var(--fg)}
+.big span{display:inline-block;padding:0 .06em}
+
+/* sub views */
+.pv,.doc,.gv{padding-top:20px}
+.back{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;margin-left:-10px;border-radius:10px;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--fg)}
+.back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pv h1,.gv h1,.doc h1{font-size:44px;line-height:1.02;margin:22px 0 6px}
+.pv .meta{display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--muted);font-size:16px;margin-bottom:24px;flex-wrap:wrap}
+.visit{display:inline-flex;align-items:center;gap:6px;min-height:42px;padding:0 18px;border-radius:10px;background:var(--fg);color:var(--bg);text-decoration:none;font-size:15px;font-weight:500}
+.visit:hover{background:#000}
+.tabs{position:sticky;top:61px;z-index:10;display:flex;gap:6px;margin:34px 0 0;border-bottom:1px solid var(--line);background:rgba(245,242,234,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.tab{min-height:44px;padding:0 14px;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:inherit;font-size:16px;cursor:pointer;margin-bottom:-1px}
+.tab[aria-current="true"]{color:var(--fg);border-color:var(--acc)}
+.tp{padding:24px 0 8px;font-size:18px;line-height:1.65;color:#3a3732}
+.tp section{scroll-margin-top:120px;padding-top:8px}
+.tp section+section{margin-top:28px}
+.tp h2{font-size:28px;margin:0 0 12px;color:var(--fg)}
+.tp p{margin:0 0 16px}
+.tp ul{margin:0 0 16px;padding-left:20px}
+.tp li{margin:6px 0}
+.stills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.stills figure{margin:0}
+.sframe{position:relative;overflow:hidden;display:block;width:100%;aspect-ratio:16/10;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.sframe.off{display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;font-size:12px;color:var(--soft)}
+.stills figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.cta{margin:48px 0 0;padding:28px 24px;border:1px solid var(--line);border-radius:16px;background:#fbf9f4}
+.cta h2{margin:0 0 10px;font-size:30px}
+.cta a{font-size:18px;color:var(--acc);text-decoration:none}
+.cta a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* full gallery: one column on phones, AJ-style rows of equal height on wider screens */
+.gsub{color:var(--muted);margin:0 0 24px;font-size:17px}
+.grid{display:flex;flex-direction:column;gap:12px}
+.grow{display:contents}
+.gi{display:block;width:100%;padding:0;border:0;background:var(--card);border-radius:16px;overflow:hidden;cursor:zoom-in}
+.gi img{display:block;width:100%;height:auto;transition:transform .5s ease}
+.gi:hover img{transform:scale(1.02)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(28,26,23,.94);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s ease}
+.lb.on{opacity:1}
+.lb img{max-width:calc(100vw - 32px);max-height:calc(100vh - 140px);border-radius:10px;display:block;user-select:none}
+.lb .x,.lb .pv2,.lb .nx{position:absolute;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb .x{top:14px;right:14px}
+.lb .pv2{left:14px;bottom:24px}
+.lb .nx{right:14px;bottom:24px}
+.lb button:hover{background:rgba(255,255,255,.2)}
+.lb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lb .ct{position:absolute;bottom:36px;left:0;right:0;text-align:center;color:#bdb8ae;font-size:14px;pointer-events:none}
+
+/* docs */
+.dtabs{display:flex;gap:6px;margin:18px 0 0;border-bottom:1px solid var(--line)}
+.dtabs a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px}
+.dtabs a[aria-current="page"]{color:var(--fg);border-color:var(--acc)}
+.dsub{color:var(--muted);margin:0 0 18px}
+.sheet-prev{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 18px 50px rgba(40,36,30,.16);border:1px solid var(--line)}
+.sheet-prev img{display:block;width:100%;height:auto}
+.dl{margin:22px 0 0}
+
+@media (max-width:520px){
+  .intro h1{font-size:38px}
+  .intro p.t{font-size:17px}
+  .gt{gap:6px}
+  .gt a{border-radius:10px}
+  .art{padding:22px 16px 0}
+  .scr{padding:16px 14px 0}
+  .xr .co{font-size:20px}
+  .xr .yr{font-size:13px}
+  .ts p{font-size:16px}
+  .pv h1,.gv h1,.doc h1{font-size:36px}
+  .stills{grid-template-columns:1fr}
+}
+@media (min-width:700px){
+  .grid{gap:14px}
+  .grow{display:flex;gap:14px}
+  .grow .gi{flex-basis:0;flex-shrink:1;height:auto}
+  .grow .gi img{height:100%;object-fit:cover}
+}
+@media (min-width:900px){
+  .wrap{max-width:1160px;padding:0 40px}
+  .hdr{padding:10px 40px}
+  /* intro: text on the left, the portrait drawn straight onto the page on the right */
+  .intro{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:24px;align-items:end;padding:24px 0 0;min-height:calc(100vh - 66px);max-height:900px}
+  .intro .txt{order:1;padding-bottom:64px}
+  .frame{order:2;border:0;border-radius:0;background:none;aspect-ratio:auto;align-self:stretch;display:flex;align-items:flex-end;justify-content:center}
+  .frame img{mix-blend-mode:multiply;width:100%;height:auto;max-height:calc(100vh - 90px);object-fit:contain;object-position:50% 100%}
+  .intro h1{font-size:76px;margin-top:0}
+  .role{font-size:19px;margin-bottom:28px}
+  .intro p.t{font-size:20px;max-width:560px}
+  section.blk{padding:104px 0 8px}
+  .sh{font-size:46px}
+  .gt{gap:14px}
+  .gt a{aspect-ratio:3/4;border-radius:16px}
+  .xr{grid-template-columns:36px minmax(0,1.1fr) minmax(0,1fr) auto;gap:0 20px;align-items:center;padding:20px 0}
+  .xr>div{display:contents}
+  .xr .rl{margin-top:0}
+  .xr .yr{padding-top:0;text-align:right}
+  .logo{margin-top:0}
+  .art{aspect-ratio:16/8;padding:44px 64px 0}
+  .ts{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+  .ts h3{grid-row:1}
+  .ts p{grid-row:2}
+  .pv,.doc{max-width:900px}
+  .pv h1,.gv h1,.doc h1{font-size:60px}
+  .gv{max-width:1240px}
+  .frow{padding:22px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.art,.gt img,.gi img{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <button class="iconbtn" id="openMenu" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+  <span></span>
+  <div class="hicons"><a class="ico" href="https://www.linkedin.com/in/akosa-chinaza-a83200368" rel="noopener" aria-label="Akosa Chinaza on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a></div>
+</header>
+
+<div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="scrim" data-close></div>
+  <div class="sheet">
+    <div class="row">
+      <button class="iconbtn" id="closeMenu" aria-label="Close menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      <span></span><span></span>
+    </div>
+    <nav aria-label="Main">
+      <a href="#top" data-close>home</a>
+      <a href="#gallery" data-close>gallery</a>
+      <a href="#projects" data-close>projects</a>
+      <a href="#resume" data-close>resume</a>
+      <a href="#contact" data-close>contact</a>
+    </nav>
+  </div>
+</div>
+
+<main id="home">
+  <div class="wrap">
+    <section class="intro" id="top" aria-label="Intro">
+      <div class="frame"><img src="img/portrait.webp" alt="Line-art self-portrait of Akosa Chinaza" width="860" height="1059" fetchpriority="high"></div>
+      <div class="txt">
+        <h1>Akosa <i>Chinaza</i></h1>
+        <p class="role">Artist &amp; Frontend Developer</p>
+        <p class="t">I draw people the way light finds them: digital portraits, ink studies and fan art of the stories I grew up on. Then I bring the same eye to the web, turning designs into interfaces that feel considered down to the last pixel.</p>
+        <p class="t">I study Computer Science &amp; Education at Lagos State University, and I recently finished a frontend development intensive at Crestware Solutions.</p>
+        <p class="t">Open to work. You can reach me on <a class="u" href="https://www.linkedin.com/in/akosa-chinaza-a83200368" rel="noopener">LinkedIn</a>.</p>
+      </div>
+    </section>
+
+    <section class="blk" id="art" aria-labelledby="gal-h">
+      <h2 class="sh" id="gal-h">Gallery <span class="n" id="gcount"></span></h2>
+      <div class="gt" id="gt"></div>
+      <a class="more" href="#gallery">See more ↗</a>
+    </section>
+
+    <section class="blk" id="experience" aria-labelledby="exp-h">
+      <h2 class="sh" id="exp-h">Experience</h2>
+      <div class="xl">
+        <div class="xr"><span class="logo" aria-hidden="true">C</span><div><span class="co">Crestware Solutions</span><span class="rl">Frontend Intern · Frontend Development Intensive</span></div><span class="yr">Jul — Oct 2026</span></div>
+      </div>
+      <p class="open"><span class="dot" aria-hidden="true"></span>Open to work. <a href="https://www.linkedin.com/in/akosa-chinaza-a83200368" rel="noopener">Reach out ↗</a></p>
+    </section>
+
+    <section class="blk" id="projects" aria-labelledby="projects-h">
+      <h2 class="sh" id="projects-h">Projects <span class="n" id="pcount"></span></h2>
+      <div class="plist" id="plist"></div>
+    </section>
+
+    <section class="blk ts" id="skills" aria-label="Skills and tools">
+      <h3>Skills</h3>
+      <p>Art &amp; Illustration<span class="d">·</span>Animation<span class="d">·</span>UI/UX Design<span class="d">·</span>Frontend Development<span class="d">·</span>Python<span class="d">·</span>Project Management<span class="d">·</span>Microsoft Office Suite</p>
+      <h3>Tools</h3>
+      <p>Visual Studio Code<span class="d">·</span>Clip Studio Paint<span class="d">·</span>Figma<span class="d">·</span>GitHub</p>
+    </section>
+  </div>
+</main>
+
+<main id="galleryview" hidden>
+  <div class="wrap gv">
+    <a class="back" href="#art" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></a>
+    <h1>Gallery</h1>
+    <p class="gsub">Digital paintings and ink drawings. Tap any piece to see it larger.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<main id="project" hidden>
+  <div class="wrap pv">
+    <a class="back" href="#projects" aria-label="Back to projects"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></a>
+    <div id="pvart" style="margin-top:14px"></div>
+    <h1 id="pvtitle"></h1>
+    <div class="meta"><span id="pvsub"></span><a class="visit" id="pvlink" href="#" rel="noopener">Visit live site ↗</a></div>
+    <nav class="tabs" aria-label="Jump to section">
+      <button class="tab" id="t-overview" data-go="overview" aria-current="true">Overview</button>
+      <button class="tab" id="t-challenge" data-go="challenge">Challenge</button>
+      <button class="tab" id="t-solution" data-go="solution">Solution</button>
+    </nav>
+    <div class="tp" id="tp"></div>
+    <div class="cta">
+      <h2>Want to work together?</h2>
+      <a href="https://www.linkedin.com/in/akosa-chinaza-a83200368" rel="noopener">Reach me on LinkedIn ↗</a>
+    </div>
+  </div>
+</main>
+
+<main id="docview" hidden>
+  <div class="wrap doc">
+    <a class="back" href="#top" aria-label="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></a>
+    <div class="dtabs" role="navigation" aria-label="Documents"><a href="#resume" id="d-resume">Resume</a><a href="#cover-letter" id="d-cover-letter">Cover letter</a></div>
+    <h1 id="dtitle">Resume</h1>
+    <p class="dsub" id="dsub">Preview</p>
+    <div class="sheet-prev"><img id="dimg" alt="" width="1240" height="1754" decoding="async"></div>
+    <div class="dl"><a class="visit" id="dlink" href="docs/Akosa-Chinazaekpere-ThankGod-Resume.pdf" download>Download PDF</a></div>
+  </div>
+</main>
+
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <div class="frow"><span>©2026 — Made by Àmúró &amp; Klaus</span><a class="ico" href="https://www.linkedin.com/in/akosa-chinaza-a83200368" rel="noopener" aria-label="LinkedIn" style="color:var(--muted)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a></div>
+  </div>
+  <p class="big" id="big" aria-hidden="true"><span>Akosa</span></p>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Artwork">
+  <img id="lbimg" alt="">
+  <button class="x" id="lbx" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <button class="pv2" id="lbp" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+  <button class="nx" id="lbn" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+  <div class="ct" id="lbc"></div>
+</div>
+
+<script>
+(function () {
+  // Artworks: file name, width, height, description
+  var A = {
+    'ghoul-mask': [1400, 912, 'Ink and marker drawing of a masked ghoul with a red flame-like aura'],
+    'under-the-tree': [810, 1080, 'Digital painting of a girl resting against a tree in warm sunlight'],
+    'red-and-blue': [1080, 1080, 'Digital portrait lit in red and blue on a halftone background'],
+    'in-the-leaves': [1168, 1280, 'Digital portrait of a boy framed by green leaves and dappled light'],
+    'red-shirt': [810, 1080, 'Digital painting of a man in a red shirt with arms crossed'],
+    'cursed-king': [1400, 1091, 'Ink and colour pencil drawing of a tattooed fighter in a battle stance'],
+    'loser-sign': [1080, 1080, 'Digital portrait of a girl with freckles making an L sign over her forehead'],
+    'siamese-kitten': [560, 800, 'Digital painting of a Siamese kitten with its paws up'],
+    'blue-hair': [1080, 1080, 'Digital portrait of a girl with blue hair and white cat ears'],
+    'afro': [1080, 1080, 'Greyscale digital painting of a man with a large afro'],
+    'crown-of-thorns': [1400, 1271, 'Pen drawing of a figure crowned with thorns']
+  };
+  // Rows for the full gallery (wide screens). On phones every piece is shown full width, one after another.
+  var ROWS = [['ghoul-mask', 'under-the-tree'], ['red-and-blue', 'in-the-leaves', 'red-shirt'], ['cursed-king', 'loser-sign'], ['siamese-kitten', 'blue-hair', 'afro', 'crown-of-thorns']];
+  var ORDER = [].concat.apply([], ROWS);
+  var TEASE = ['under-the-tree', 'red-and-blue', 'in-the-leaves', 'loser-sign'];
+
+  var P = [
+    { id: 'siwes-atlas', name: 'SIWES Atlas', role: 'Frontend Developer', date: 'June 2026', url: 'https://siwes-atlas.vercel.app/',
+      art: { bg: '#123c33', win: '#f4f1e8', fg: '#14231e', acc: '#1d6b55', k: 'Centralized internships directory', h: 'Find the perfect SIWES placement.', s: 'A public repository connecting tertiary students with vetted industrial training roles.', b: 'Student gateway', hs: 30 },
+      overview: ['SIWES Atlas is a directory for SIWES, the Students\' Industrial Work Experience Scheme that Nigerian tertiary students go through. It puts vetted industrial training placements in one public place, so students can find a role and companies can list one. It was built as an entry to the OPay Challenge 2026.'],
+      challenge: ['Finding a SIWES placement usually means word of mouth, scattered posts and long silences after applying. Students can\'t see where the open slots are, whether a role is paid, or how long a company takes to reply.', ['Give students and companies their own way in.', 'Make placements easy to browse by location, length, pay and response time.', 'Let students track every application after they apply.']],
+      solution: { text: [['Separate student and company gateways. Students set up a profile with their CGPA and CV, and companies list slots with location, duration, stipend and response time.', 'An interactive globe explorer, with Nigeria as the first active region and more planned.', 'Postal-stamp cards for each state that show open slots, feedback periods and stipends.', 'A profile workspace that shows a student\'s details and tracks each application.', 'A step-by-step "transmitting application" screen as the CV is sent to the employer.']],
+        stills: [{ url: 'https://siwes-atlas.vercel.app/', y: 0, cap: 'Gateway' }, { url: 'https://siwes-atlas.vercel.app/', y: 900, cap: 'Explorer & directory' }] } },
+    { id: 'pinazza', name: 'PiNazza', role: 'Frontend Developer', date: 'August 2026', url: 'https://pi-nazza.netlify.app/',
+      art: { bg: '#c0392b', win: '#fff8ef', fg: '#2a1810', acc: '#e67e22', k: 'Lagos, Nigeria', h: 'Mouth watering circular breads', s: 'Freshly made pizza, straight from the oven.', b: 'Order now', hs: 30 },
+      overview: ['PiNazza is a one-page website for a pizza business in Lagos. It shows off the popular pizzas, takes orders by size and runs customers through to payment, all without leaving the page.'],
+      challenge: ['Make a small food brand feel appetising online and keep ordering simple: pick a pizza, choose a size, pay, done.'],
+      solution: { text: [['A hero with an "order now" button that jumps straight to the menu.', 'Popular pizzas, then a menu with small, medium and large sizes.', 'A cart with a running total and a payment form with delivery details.', 'A "today\'s special" offer, what sets the brand apart, an about section and contact details.']],
+        stills: [{ url: 'https://pi-nazza.netlify.app/', y: 0, cap: 'Hero' }, { url: 'https://pi-nazza.netlify.app/', y: 900, cap: 'Popular pizzas' }, { url: 'https://pi-nazza.netlify.app/', y: 1800, cap: 'Menu & cart' }, { url: 'https://pi-nazza.netlify.app/', y: 2700, cap: 'Today\'s special' }] } }
+  ];
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  // Gallery teaser and full gallery
+  document.getElementById('gt').innerHTML = TEASE.map(function (k) {
+    return '<a href="#gallery" aria-label="Open the gallery"><img src="img/g/' + k + '-s.webp" alt="' + esc(A[k][2]) + '" width="' + A[k][0] + '" height="' + A[k][1] + '" loading="lazy" decoding="async"></a>';
+  }).join('');
+  document.getElementById('gcount').textContent = ORDER.length;
+  var gridBuilt = false;
+  function buildGrid() {
+    if (gridBuilt) return; gridBuilt = true;
+    document.getElementById('grid').innerHTML = ROWS.map(function (row) {
+      return '<div class="grow">' + row.map(function (k) {
+        var a = A[k], r = a[0] / a[1];
+        return '<button class="gi" data-k="' + k + '" style="flex-grow:' + r.toFixed(4) + ';aspect-ratio:' + a[0] + '/' + a[1] + '"><img src="img/g/' + k + '.webp" srcset="img/g/' + k + '-s.webp 640w, img/g/' + k + '.webp ' + a[0] + 'w" sizes="(min-width:700px) 50vw, 100vw" alt="' + esc(a[2]) + '" width="' + a[0] + '" height="' + a[1] + '" loading="lazy" decoding="async"></button>';
+      }).join('') + '</div>';
+    }).join('');
+  }
+
+  // Lightbox
+  var lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg'), li = 0, opener = null;
+  function show(i) {
+    li = (i + ORDER.length) % ORDER.length;
+    var k = ORDER[li];
+    lbimg.src = 'img/g/' + k + '.webp'; lbimg.alt = A[k][2];
+    document.getElementById('lbc').textContent = (li + 1) + ' / ' + ORDER.length;
+  }
+  function openLb(k) {
+    opener = document.activeElement;
+    show(ORDER.indexOf(k)); lb.hidden = false; document.body.classList.add('lock');
+    requestAnimationFrame(function () { lb.classList.add('on'); document.getElementById('lbx').focus({ preventScroll: true }); });
+  }
+  function closeLb() {
+    if (lb.hidden) return;
+    lb.classList.remove('on'); document.body.classList.remove('lock');
+    setTimeout(function () { lb.hidden = true; }, 250);
+    if (opener) opener.focus({ preventScroll: true });
+  }
+  document.getElementById('grid').addEventListener('click', function (e) { var b = e.target.closest('.gi'); if (b) openLb(b.getAttribute('data-k')); });
+  document.getElementById('lbx').addEventListener('click', closeLb);
+  document.getElementById('lbp').addEventListener('click', function () { show(li - 1); });
+  document.getElementById('lbn').addEventListener('click', function () { show(li + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  var sx = null;
+  lb.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) { if (sx === null) return; var d = e.changedTouches[0].clientX - sx; if (Math.abs(d) > 50) show(li + (d < 0 ? 1 : -1)); sx = null; }, { passive: true });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'ArrowRight') show(li + 1);
+    else if (e.key === 'ArrowLeft') show(li - 1);
+  });
+
+  // Project cards with live opening screens
+  function art(p, big, noLive) {
+    var a = p.art, host = p.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    return '<div class="art" style="background:' + a.bg + '">' +
+      '<div class="win" style="background:' + a.win + ';color:' + a.fg + '">' +
+      '<div class="bar"><i></i><i></i><i></i><b>' + esc(host) + '</b></div>' +
+      '<div class="scr"><span class="k">' + esc(a.k) + '</span>' +
+      '<span class="h" style="font-size:' + (big ? a.hs * 1.25 : a.hs) + 'px">' + esc(a.h) + '</span>' +
+      '<span class="s">' + esc(a.s) + '</span>' +
+      '<span class="btn" style="background:' + a.acc + ';color:#fff">' + esc(a.b) + '</span>' +
+      '</div>' + (LIVE && !noLive ? '<div class="live"><iframe data-src="' + esc(p.url) + '" title="' + esc(p.name) + ' — opening screen" tabindex="-1" aria-hidden="true" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe></div>' : '') +
+      '</div></div>';
+  }
+  // Live previews are skipped when this page is itself framed (other sites can't load there), on data saver and on 2G
+  var conn = navigator.connection || {};
+  var LIVE = window.self === window.top && !conn.saveData && !/(^|-)2g$/.test(conn.effectiveType || '');
+  // Each preview only loads near the screen and is emptied again when far away, which keeps scrolling smooth
+  var near = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var f = e.target;
+      if (e.isIntersecting) { if (!f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); }
+      else if (f.getAttribute('src')) { f.removeAttribute('src'); f.classList.remove('on'); }
+    });
+  }, { rootMargin: '600px 0px' }) : null;
+  function watchFrames(root) {
+    root.querySelectorAll('iframe[data-src]').forEach(function (f) {
+      if (f._w) return; f._w = 1;
+      f.addEventListener('load', function () { if (f.getAttribute('src')) f.classList.add('on'); });
+      if (near) near.observe(f); else f.setAttribute('src', f.getAttribute('data-src'));
+    });
+  }
+  var VW = 1280;
+  function fitLive() {
+    document.querySelectorAll('.live').forEach(function (box) {
+      var w = box.clientWidth, h = box.clientHeight, f = box.firstChild;
+      if (!w) return;
+      var k = w / VW;
+      f.style.width = VW + 'px'; f.style.height = Math.ceil(h / k) + 'px'; f.style.transform = 'scale(' + k + ')';
+    });
+  }
+  function fitStills() {
+    document.querySelectorAll('.sframe[data-y]').forEach(function (box) {
+      var w = box.clientWidth, h = box.clientHeight, f = box.firstChild, y = +box.getAttribute('data-y');
+      if (!w) return;
+      var k = w / VW;
+      f.style.width = VW + 'px'; f.style.height = Math.ceil(h / k + y) + 'px';
+      f.style.transform = 'translateY(' + (-y * k) + 'px) scale(' + k + ')';
+    });
+  }
+
+  document.getElementById('plist').innerHTML = P.map(function (p) {
+    return '<a class="pcard" href="#p-' + p.id + '" aria-label="' + esc(p.name) + ' — open project">' + art(p) +
+      '<div class="cap"><span>' + esc(p.name) + '<small>' + esc(p.role) + '</small></span><span>' + esc(p.date) + '</span></div></a>';
+  }).join('');
+  document.getElementById('pcount').textContent = P.length;
+  requestAnimationFrame(fitLive);
+  watchFrames(document.getElementById('plist'));
+
+  // Project view: full write-up, tabs just jump to each part
+  var home = document.getElementById('home'), pv = document.getElementById('project'), gv = document.getElementById('galleryview'), dv = document.getElementById('docview');
+  var cur = null, jumping = 0;
+  function para(d) {
+    return d.map(function (x) {
+      if (Array.isArray(x)) return '<ul>' + x.map(function (li) { return '<li>' + esc(li) + '</li>'; }).join('') + '</ul>';
+      return '<p>' + esc(x) + '</p>';
+    }).join('');
+  }
+  function still(st) {
+    var inner = LIVE
+      ? '<div class="sframe" data-y="' + (st.y || 0) + '"><iframe data-src="' + esc(st.url) + '" title="' + esc(cur.name + ' — ' + st.cap) + '" tabindex="-1" aria-hidden="true" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe></div>'
+      : '<div class="sframe off"><span>' + esc(st.cap) + ' — live still shows on the published site</span></div>';
+    return '<figure>' + inner + '<figcaption>' + esc(st.cap) + '</figcaption></figure>';
+  }
+  function mark(t) {
+    ['overview', 'challenge', 'solution'].forEach(function (k) {
+      var b = document.getElementById('t-' + k);
+      if (k === t) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    });
+  }
+  function renderAll() {
+    document.getElementById('tp').innerHTML =
+      '<section id="s-overview"><h2>Overview</h2>' + para(cur.overview) + '</section>' +
+      '<section id="s-challenge"><h2>Challenge</h2>' + para(cur.challenge) + '</section>' +
+      '<section id="s-solution"><h2>Solution</h2>' + para(cur.solution.text) + '<div class="stills">' + cur.solution.stills.map(still).join('') + '</div></section>';
+    requestAnimationFrame(fitStills);
+    watchFrames(pv);
+    mark('overview');
+  }
+  ['overview', 'challenge', 'solution'].forEach(function (t) {
+    document.getElementById('t-' + t).addEventListener('click', function () {
+      var el = document.getElementById('s-' + t);
+      if (el) { mark(t); jumping = Date.now(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+  window.addEventListener('scroll', function () {
+    if (pv.hidden || Date.now() - jumping < 800) return;
+    var c = 'overview';
+    ['overview', 'challenge', 'solution'].forEach(function (t) {
+      var el = document.getElementById('s-' + t);
+      if (el && el.getBoundingClientRect().top < 160) c = t;
+    });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) c = 'solution';
+    mark(c);
+  }, { passive: true });
+
+  function only(v) { [home, pv, gv, dv].forEach(function (m) { m.hidden = m !== v; }); }
+  function route() {
+    var h = (location.hash || '').slice(1);
+    closeLb();
+    if (h === 'resume' || h === 'cover-letter') {
+      var cv = h === 'resume';
+      document.getElementById('dtitle').textContent = cv ? 'Resume' : 'Cover letter';
+      document.getElementById('dsub').textContent = cv ? 'Preview of Chinaza\'s resume. Download the PDF below.' : 'Preview of Chinaza\'s cover letter. Download the PDF below.';
+      var im = document.getElementById('dimg');
+      im.src = cv ? 'docs/cv-preview.webp' : 'docs/cover-letter-preview.webp';
+      im.alt = cv ? 'Resume of Akosa Chinazaekpere ThankGod' : 'Cover letter of Akosa Chinazaekpere ThankGod';
+      document.getElementById('dlink').href = cv ? 'docs/Akosa-Chinazaekpere-ThankGod-Resume.pdf' : 'docs/Akosa-Chinazaekpere-ThankGod-Cover-Letter.pdf';
+      document.getElementById('d-resume').setAttribute('aria-current', cv ? 'page' : 'false');
+      document.getElementById('d-cover-letter').setAttribute('aria-current', cv ? 'false' : 'page');
+      document.title = (cv ? 'Resume' : 'Cover letter') + ' — Akosa Chinaza';
+      only(dv); window.scrollTo(0, 0); return;
+    }
+    if (h === 'gallery') {
+      buildGrid(); document.title = 'Gallery — Akosa Chinaza';
+      only(gv); window.scrollTo(0, 0); return;
+    }
+    var m = h.indexOf('p-') === 0 ? P.filter(function (p) { return 'p-' + p.id === h; })[0] : null;
+    if (m) {
+      cur = m;
+      document.getElementById('pvart').innerHTML = art(m, true);
+      document.getElementById('pvtitle').textContent = m.name;
+      document.getElementById('pvsub').textContent = m.role + ' · ' + m.date;
+      document.getElementById('pvlink').href = m.url;
+      document.title = m.name + ' — Akosa Chinaza';
+      renderAll(); only(pv); fitLive();
+      watchFrames(document.getElementById('pvart'));
+      window.scrollTo(0, 0); return;
+    }
+    document.title = 'Akosa Chinaza — Artist & Frontend Developer';
+    var wasHidden = home.hidden;
+    only(home);
+    requestAnimationFrame(fitLive);
+    var el = h && document.getElementById(h);
+    if (el) { if (wasHidden) setTimeout(function () { el.scrollIntoView(); }, 0); }
+    else if (wasHidden) window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  // Footer name: stretch to the full width
+  function fitBig() {
+    var p = document.getElementById('big'), t = p.firstChild;
+    p.style.fontSize = '100px';
+    var w = t.getBoundingClientRect().width;
+    if (w) p.style.fontSize = (100 * (document.documentElement.clientWidth - 8) / w) + 'px';
+  }
+  fitBig();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBig);
+  var fr = 0; window.addEventListener('resize', function () { cancelAnimationFrame(fr); fr = requestAnimationFrame(function () { fitLive(); if (!pv.hidden) fitStills(); fitBig(); }); });
+
+  // Menu
+  var menu = document.getElementById('menu'), ob = document.getElementById('openMenu');
+  function setMenu(on) {
+    ob.setAttribute('aria-expanded', on ? 'true' : 'false');
+    document.body.classList.toggle('lock', on);
+    if (on) { menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('open'); document.getElementById('closeMenu').focus({ preventScroll: true }); }); }
+    else { menu.classList.remove('open'); setTimeout(function () { if (!menu.classList.contains('open')) menu.hidden = true; }, 440); if (menu.contains(document.activeElement)) ob.focus({ preventScroll: true }); }
+  }
+  ob.addEventListener('click', function () { setMenu(true); });
+  document.getElementById('closeMenu').addEventListener('click', function () { setMenu(false); });
+  menu.querySelectorAll('[data-close]').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); closeLb(); } });
+})();
+</script>
+</body>
+</html>
