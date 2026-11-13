@@ -61,7 +61,7 @@ body.menu-on .hdr{opacity:0;pointer-events:none}
 .intro{padding:28px 0 12px}
 .frame{border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);aspect-ratio:4/4.4}
 .frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.intro h1{font-size:44px;line-height:1;letter-spacing:-.01em;margin:28px 0 6px}
+.intro h1{font-size:min(44px,10.4vw);line-height:1;letter-spacing:-.01em;margin:28px 0 6px;white-space:nowrap}
 .intro h1 i{color:var(--acc)}
 .role{margin:0 0 22px;color:var(--muted);font-size:17px}
 .intro p.t{font-size:19px;line-height:1.6;color:#3a3732;margin:0 0 16px}
@@ -123,7 +123,7 @@ section.blk{padding:72px 0 8px}
 
 /* footer */
 .foot{margin-top:56px;border-top:1px solid var(--line);overflow:hidden}
-.frow{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;font-size:15px;color:var(--muted);border-bottom:1px solid var(--line)}
+.frow{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-size:15px;color:var(--muted);border-bottom:1px solid var(--line)}
 .big{margin:14px 0 0;font-family:'IM Fell English',Georgia,serif;font-style:italic;font-size:30vw;line-height:1.1;text-align:center;white-space:nowrap;user-select:none;color:var(--fg)}
 .big span{display:inline-block;padding:0 .06em}
 
@@ -186,7 +186,6 @@ section.blk{padding:72px 0 8px}
 .dl{margin:22px 0 0}
 
 @media (max-width:520px){
-  .intro h1{font-size:38px}
   .intro p.t{font-size:17px}
   .gt{gap:6px}
   .gt a{border-radius:10px}
@@ -212,18 +211,14 @@ section.blk{padding:72px 0 8px}
   .intro .txt{order:1;padding-bottom:24px}
   .frame{order:2;border:0;border-radius:0;background:none;aspect-ratio:auto;align-self:stretch;display:flex;align-items:flex-end;justify-content:center}
   .frame img{mix-blend-mode:multiply;width:100%;height:auto;max-height:min(calc(100vh - 90px),760px);object-fit:contain;object-position:50% 100%}
-  .intro h1{font-size:76px;margin-top:0}
+  .intro h1{font-size:min(76px,5.4vw);margin-top:0}
   .role{font-size:19px;margin-bottom:28px}
   .intro p.t{font-size:20px;max-width:560px}
   section.blk{padding:104px 0 8px}
   .sh{font-size:46px}
   .gt{gap:14px}
   .gt a{aspect-ratio:3/4;border-radius:16px}
-  .xr{grid-template-columns:36px minmax(0,1.1fr) minmax(0,1fr) auto;gap:0 20px;align-items:center;padding:20px 0}
-  .xr>div{display:contents}
-  .xr .rl{margin-top:0}
-  .xr .yr{padding-top:0;text-align:right}
-  .logo{margin-top:0}
+  .xr{padding:20px 0}
   .art{aspect-ratio:16/8;padding:44px 64px 0}
   .ts{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
   .ts h3{grid-row:1}
@@ -271,7 +266,7 @@ section.blk{padding:72px 0 8px}
         <h1>Akosa <i>Chinaza</i></h1>
         <p class="role">Artist &amp; Frontend Developer</p>
         <p class="t">I draw people the way light finds them: digital portraits, ink studies and fan art of the stories I grew up on. Then I bring the same eye to the web, turning designs into interfaces that feel considered down to the last pixel.</p>
-        <p class="t">I study Computer Science &amp; Education at Lagos State University, and I recently finished a frontend development intensive at Crestware Solutions.</p>
+        <p class="t">I study Computer Science &amp; Education at Lagos State University, and I recently finished a frontend internship at Crestware Solutions.</p>
         <p class="t">Open to work. Send a mail to <a class="u" href="mailto:chinazaakosa72@gmail.com">chinazaakosa72@gmail.com</a>, or reach me on <a class="u" href="https://www.linkedin.com/in/akosa-chinaza-a83200368" rel="noopener">LinkedIn</a>.</p>
       </div>
     </section>
@@ -285,9 +280,9 @@ section.blk{padding:72px 0 8px}
     <section class="blk" id="experience" aria-labelledby="exp-h">
       <h2 class="sh" id="exp-h">Experience</h2>
       <div class="xl">
-        <div class="xr"><span class="logo" aria-hidden="true">C</span><div><span class="co">Crestware Solutions</span><span class="rl">Frontend Intern · Frontend Development Intensive</span></div><span class="yr">Jul — Oct 2026</span></div>
+        <div class="xr"><span class="logo" aria-hidden="true">C</span><div><span class="co">Crestware Solutions</span><span class="rl">Frontend Intern</span></div><span class="yr">Jul — Oct 2026</span></div>
       </div>
-      <p class="open"><span class="dot" aria-hidden="true"></span>Open to work. <a href="mailto:chinazaakosa72@gmail.com">Reach out ↗</a> <span style="color:var(--muted);word-break:break-all">chinazaakosa72@gmail.com</span></p>
+      <p class="open"><span class="dot" aria-hidden="true"></span>Open to work. <a href="mailto:chinazaakosa72@gmail.com">Reach out ↗</a></p>
     </section>
 
     <section class="blk" id="projects" aria-labelledby="projects-h">
@@ -297,7 +292,7 @@ section.blk{padding:72px 0 8px}
 
     <section class="blk ts" id="skills" aria-label="Skills and tools">
       <h3>Skills</h3>
-      <p>Art &amp; Illustration<span class="d">·</span>Animation<span class="d">·</span>UI/UX Design<span class="d">·</span>Frontend Development<span class="d">·</span>Python<span class="d">·</span>Project Management<span class="d">·</span>Microsoft Office Suite</p>
+      <p>Art &amp; Illustration<span class="d">·</span>Animation<span class="d">·</span>UI/UX Design<span class="d">·</span>Frontend Development<span class="d">·</span>Technical Research<span class="d">·</span>Python<span class="d">·</span>Project Management<span class="d">·</span>Microsoft Office Suite</p>
       <h3>Tools</h3>
       <p>Visual Studio Code<span class="d">·</span>Clip Studio Paint<span class="d">·</span>Figma<span class="d">·</span>GitHub</p>
     </section>
@@ -345,7 +340,7 @@ section.blk{padding:72px 0 8px}
 
 <footer class="foot" id="contact">
   <div class="wrap">
-    <div class="frow"><span>©2026 — Made by Àmúró &amp; Klaus</span><span style="display:flex"><a class="ico" style="color:var(--muted)" href="mailto:chinazaakosa72@gmail.com" aria-label="Email chinazaakosa72@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;width:22px;height:22px"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M4 7l8 6 8-6"></path></svg></a><a class="ico" href="https://www.linkedin.com/in/akosa-chinaza-a83200368" rel="noopener" aria-label="LinkedIn" style="color:var(--muted)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a></span></div>
+    <div class="frow"><span>Pucci ©2026</span><span>Made by Àmúró &amp; Klaus</span></div>
   </div>
   <p class="big" id="big" aria-hidden="true"><span>Akosa</span></p>
 </footer>
@@ -380,18 +375,18 @@ section.blk{padding:72px 0 8px}
   var TEASE = ['under-the-tree', 'red-and-blue', 'in-the-leaves', 'loser-sign'];
 
   var P = [
-    { id: 'siwes-atlas', name: 'SIWES Atlas', role: 'Frontend Developer', date: 'June 2026', url: 'https://siwes-atlas.vercel.app/',
-      art: { bg: '#123c33', win: '#f4f1e8', fg: '#14231e', acc: '#1d6b55', k: 'Centralized internships directory', h: 'Find the perfect SIWES placement.', s: 'A public repository connecting tertiary students with vetted industrial training roles.', b: 'Student gateway', hs: 30 },
-      overview: ['SIWES Atlas is a directory for SIWES, the Students\' Industrial Work Experience Scheme that Nigerian tertiary students go through. It puts vetted industrial training placements in one public place, so students can find a role and companies can list one. It was built as an entry to the OPay Challenge 2026.'],
-      challenge: ['Finding a SIWES placement usually means word of mouth, scattered posts and long silences after applying. Students can\'t see where the open slots are, whether a role is paid, or how long a company takes to reply.', ['Give students and companies their own way in.', 'Make placements easy to browse by location, length, pay and response time.', 'Let students track every application after they apply.']],
-      solution: { text: [['Separate student and company gateways. Students set up a profile with their CGPA and CV, and companies list slots with location, duration, stipend and response time.', 'An interactive globe explorer, with Nigeria as the first active region and more planned.', 'Postal-stamp cards for each state that show open slots, feedback periods and stipends.', 'A profile workspace that shows a student\'s details and tracks each application.', 'A step-by-step "transmitting application" screen as the CV is sent to the employer.']],
-        stills: [{ url: 'https://siwes-atlas.vercel.app/', y: 0, cap: 'Gateway' }, { url: 'https://siwes-atlas.vercel.app/', y: 900, cap: 'Explorer & directory' }] } },
     { id: 'pinazza', name: 'PiNazza', role: 'Frontend Developer', date: 'August 2026', url: 'https://pi-nazza.netlify.app/',
       art: { bg: '#c0392b', win: '#fff8ef', fg: '#2a1810', acc: '#e67e22', k: 'Lagos, Nigeria', h: 'Mouth watering circular breads', s: 'Freshly made pizza, straight from the oven.', b: 'Order now', hs: 30 },
       overview: ['PiNazza is a one-page website for a pizza business in Lagos. It shows off the popular pizzas, takes orders by size and runs customers through to payment, all without leaving the page.'],
       challenge: ['Make a small food brand feel appetising online and keep ordering simple: pick a pizza, choose a size, pay, done.'],
       solution: { text: [['A hero with an "order now" button that jumps straight to the menu.', 'Popular pizzas, then a menu with small, medium and large sizes.', 'A cart with a running total and a payment form with delivery details.', 'A "today\'s special" offer, what sets the brand apart, an about section and contact details.']],
-        stills: [{ url: 'https://pi-nazza.netlify.app/', y: 0, cap: 'Hero' }, { url: 'https://pi-nazza.netlify.app/', y: 900, cap: 'Popular pizzas' }, { url: 'https://pi-nazza.netlify.app/', y: 1800, cap: 'Menu & cart' }, { url: 'https://pi-nazza.netlify.app/', y: 2700, cap: 'Today\'s special' }] } }
+        stills: [{ url: 'https://pi-nazza.netlify.app/', y: 0, cap: 'Hero' }, { url: 'https://pi-nazza.netlify.app/', y: 900, cap: 'Popular pizzas' }, { url: 'https://pi-nazza.netlify.app/', y: 1800, cap: 'Menu & cart' }, { url: 'https://pi-nazza.netlify.app/', y: 2700, cap: 'Today\'s special' }] } },
+    { id: 'siwes-atlas', name: 'SIWES Atlas', role: 'Technical Researcher', date: 'June 2026', url: 'https://siwes-atlas.vercel.app/',
+      art: { bg: '#123c33', win: '#f4f1e8', fg: '#14231e', acc: '#1d6b55', k: 'Centralized internships directory', h: 'Find the perfect SIWES placement.', s: 'A public repository connecting tertiary students with vetted industrial training roles.', b: 'Student gateway', hs: 30 },
+      overview: ['SIWES Atlas is a directory for SIWES, the Students\' Industrial Work Experience Scheme that Nigerian tertiary students go through. It puts vetted industrial training placements in one public place, so students can find a role and companies can list one. It was built as an entry to the OPay Challenge 2026.'],
+      challenge: ['Finding a SIWES placement usually means word of mouth, scattered posts and long silences after applying. Students can\'t see where the open slots are, whether a role is paid, or how long a company takes to reply.', ['Give students and companies their own way in.', 'Make placements easy to browse by location, length, pay and response time.', 'Let students track every application after they apply.']],
+      solution: { text: [['Separate student and company gateways. Students set up a profile with their CGPA and CV, and companies list slots with location, duration, stipend and response time.', 'An interactive globe explorer, with Nigeria as the first active region and more planned.', 'Postal-stamp cards for each state that show open slots, feedback periods and stipends.', 'A profile workspace that shows a student\'s details and tracks each application.', 'A step-by-step "transmitting application" screen as the CV is sent to the employer.']],
+        stills: [{ url: 'https://siwes-atlas.vercel.app/', y: 0, cap: 'Gateway' }, { url: 'https://siwes-atlas.vercel.app/', y: 900, cap: 'Explorer & directory' }] } }
   ];
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
