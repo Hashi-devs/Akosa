@@ -46,8 +46,8 @@ img{max-width:100%}
 .grab{display:flex;align-items:center;justify-content:center;width:100%;height:22px;padding:0;margin:0 0 2px;background:none;border:0;cursor:grab;touch-action:none}
 .grab::before{content:'';width:40px;height:4px;border-radius:2px;background:#cfc8ba}
 .sheet.drag{transition:none}
-.menu.open .scrim{opacity:1}
-.menu.open .sheet{transform:none}
+.menu.show .scrim{opacity:1}
+.menu.show .sheet{transform:none}
 .sheet .row{display:grid;grid-template-columns:44px 1fr auto;align-items:center}
 .menu nav{display:flex;flex-direction:column;max-width:680px;margin:6px auto 0}
 .menu nav a{font-family:'IM Fell English',Georgia,serif;font-size:clamp(54px,15vw,92px);line-height:1;text-decoration:none;color:#a29d92;padding:12px 4px 18px;border-bottom:1px solid var(--line)}
@@ -644,8 +644,8 @@ section.blk{padding:72px 0 8px}
   function setMenu(on) {
     ob.setAttribute('aria-expanded', on ? 'true' : 'false');
     document.body.classList.toggle('lock', on); document.body.classList.toggle('menu-on', on);
-    if (on) { pushLayer('menu'); menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('open'); document.getElementById('closeMenu').focus({ preventScroll: true }); }); }
-    else { dropLayer('menu'); menu.classList.remove('open'); setTimeout(function () { if (!menu.classList.contains('open')) menu.hidden = true; }, 440); if (menu.contains(document.activeElement)) ob.focus({ preventScroll: true }); }
+    if (on) { pushLayer('menu'); menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('show'); document.getElementById('closeMenu').focus({ preventScroll: true }); }); }
+    else { dropLayer('menu'); menu.classList.remove('show'); setTimeout(function () { if (!menu.classList.contains('show')) menu.hidden = true; }, 440); if (menu.contains(document.activeElement)) ob.focus({ preventScroll: true }); }
   }
   ob.addEventListener('click', function () { setMenu(true); });
   // Collapsible: tap the handle, or drag the sheet down, to put it away
