@@ -7,18 +7,21 @@
 <meta name="description" content="Akosa Chinazaekpere ThankGod — artist and frontend developer. Digital portraits, ink drawings and websites.">
 <meta property="og:title" content="Akosa Chinaza — Artist & Frontend Developer">
 <meta property="og:description" content="Digital portraits, ink drawings and websites.">
-<meta property="og:image" content="img/portrait.webp">
+<meta property="og:image" content="https://chinazaa.vercel.app/img/portrait.webp">
+<meta property="og:url" content="https://chinazaa.vercel.app/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f5f2ea">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f5f2ea'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='20' fill='%23b8322a' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="img/portrait.webp" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet">
 
 <style>
 :root{--bg:#f5f2ea;--card:#ece7dc;--line:#ddd7ca;--fg:#1c1a17;--muted:#6c675e;--soft:#9a958a;--acc:#b8322a}
 *{box-sizing:border-box}
+html{-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:'Google Sans Flex',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
 a{color:inherit}
@@ -71,6 +74,7 @@ body.menu-on .hdr{opacity:0;pointer-events:none}
 /* sections */
 section.blk{padding:72px 0 8px}
 .sh{font-size:34px;line-height:1;margin:0 0 22px;display:flex;align-items:baseline;gap:10px}
+.lede{margin:-12px 0 20px;color:var(--muted);font-size:17px}
 .sh .n{font-family:'Google Sans Flex',sans-serif;font-size:16px;color:var(--soft)}
 
 /* gallery teaser */
@@ -167,13 +171,14 @@ section.blk{padding:72px 0 8px}
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:60;background:rgba(28,26,23,.94);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s ease}
 .lb.on{opacity:1}
-.lb img{max-width:calc(100vw - 32px);max-height:calc(100vh - 140px);border-radius:10px;display:block;user-select:none}
+.lb img{transition:opacity .2s ease;max-width:calc(100vw - 32px);max-height:calc(100vh - 140px);border-radius:10px;display:block;user-select:none}
 .lb .x,.lb .pv2,.lb .nx{position:absolute;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .lb .x{top:14px;right:14px}
 .lb .pv2{left:14px;bottom:24px}
 .lb .nx{right:14px;bottom:24px}
 .lb button:hover{background:rgba(255,255,255,.2)}
 .lb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lb img.ld{opacity:.25}
 .lb .ct{position:absolute;bottom:36px;left:0;right:0;text-align:center;color:#bdb8ae;font-size:14px;pointer-events:none}
 
 /* docs */
@@ -272,6 +277,7 @@ section.blk{padding:72px 0 8px}
 
     <section class="blk" id="art" aria-labelledby="gal-h">
       <h2 class="sh" id="gal-h">Gallery <span class="n" id="gcount"></span></h2>
+      <p class="lede">A show of a couple of selected works</p>
       <div class="gt" id="gt"></div>
       <a class="more" href="#gallery">See more ↗</a>
     </section>
@@ -279,7 +285,7 @@ section.blk{padding:72px 0 8px}
     <section class="blk" id="experience" aria-labelledby="exp-h">
       <h2 class="sh" id="exp-h">Experience</h2>
       <div class="xl">
-        <div class="xr"><div><span class="co">Crestware Solutions</span><span class="rl">Frontend Intern</span></div><span class="yr">Jul — Oct 2026</span></div>
+        <div class="xr"><div><span class="co">Crestware Solutions</span><span class="rl">Frontend Development Intern</span></div><span class="yr">Jul — Oct 2026</span></div>
       </div>
       <p class="open"><span class="dot" aria-hidden="true"></span>Open to work. <a href="mailto:chinazaakosa72@gmail.com">Reach out ↗</a></p>
     </section>
@@ -302,7 +308,7 @@ section.blk{padding:72px 0 8px}
   <div class="wrap gv">
     <a class="back" href="#art" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></a>
     <h1>Gallery</h1>
-    <p class="gsub">Digital paintings and ink drawings. Tap any piece to see it larger.</p>
+    <p class="gsub">Digital &amp; traditional pieces</p>
     <div class="grid" id="grid"></div>
   </div>
 </main>
@@ -369,7 +375,8 @@ section.blk{padding:72px 0 8px}
     'crown-of-thorns': [1400, 1271, 'Pen drawing of a figure crowned with thorns']
   };
   // Rows for the full gallery (wide screens). On phones every piece is shown full width, one after another.
-  var ROWS = [['ghoul-mask', 'under-the-tree'], ['red-and-blue', 'in-the-leaves', 'red-shirt'], ['cursed-king', 'loser-sign'], ['siamese-kitten', 'blue-hair', 'afro', 'crown-of-thorns']];
+  // digital pieces first, then traditional
+  var ROWS = [['under-the-tree', 'red-and-blue', 'in-the-leaves', 'red-shirt'], ['loser-sign', 'siamese-kitten', 'blue-hair', 'afro'], ['ghoul-mask', 'cursed-king', 'crown-of-thorns']];
   var ORDER = [].concat.apply([], ROWS);
   var TEASE = ['under-the-tree', 'red-and-blue', 'in-the-leaves', 'loser-sign'];
 
@@ -406,21 +413,37 @@ section.blk{padding:72px 0 8px}
     }).join('');
   }
 
+  // Overlays (menu, artwork viewer) get their own history step, so the phone's back button closes them first
+  var layer = null;
+  function pushLayer(n) { if (layer) return; layer = n; try { history.pushState({ layer: n }, ''); } catch (e) {} }
+  function dropLayer(n) { if (layer !== n) return; layer = null; if (history.state && history.state.layer === n) history.back(); }
+  window.addEventListener('popstate', function () {
+    if (!layer) return;
+    var n = layer; layer = null;
+    if (n === 'lb') closeLb(); else if (n === 'menu') setMenu(false);
+  });
+
   // Lightbox
   var lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg'), li = 0, opener = null;
   function show(i) {
     li = (i + ORDER.length) % ORDER.length;
     var k = ORDER[li];
-    lbimg.src = 'img/g/' + k + '.webp'; lbimg.alt = A[k][2];
+    var src = 'img/g/' + k + '.webp';
+    if (lbimg.getAttribute('src') !== src) { lbimg.classList.add('ld'); lbimg.src = src; }
+    lbimg.alt = A[k][2];
     document.getElementById('lbc').textContent = (li + 1) + ' / ' + ORDER.length;
+    // warm up the pieces either side so swiping feels instant
+    [li + 1, li - 1].forEach(function (j) { var n = new Image(); n.src = 'img/g/' + ORDER[(j + ORDER.length) % ORDER.length] + '.webp'; });
   }
+  lbimg.addEventListener('load', function () { lbimg.classList.remove('ld'); });
   function openLb(k) {
     opener = document.activeElement;
-    show(ORDER.indexOf(k)); lb.hidden = false; document.body.classList.add('lock');
+    show(ORDER.indexOf(k)); lb.hidden = false; document.body.classList.add('lock'); pushLayer('lb');
     requestAnimationFrame(function () { lb.classList.add('on'); document.getElementById('lbx').focus({ preventScroll: true }); });
   }
   function closeLb() {
     if (lb.hidden) return;
+    dropLayer('lb');
     lb.classList.remove('on'); document.body.classList.remove('lock');
     setTimeout(function () { lb.hidden = true; }, 250);
     if (opener) opener.focus({ preventScroll: true });
@@ -435,6 +458,10 @@ section.blk{padding:72px 0 8px}
   lb.addEventListener('touchend', function (e) { if (sx === null) return; var d = e.changedTouches[0].clientX - sx; if (Math.abs(d) > 50) show(li + (d < 0 ? 1 : -1)); sx = null; }, { passive: true });
   document.addEventListener('keydown', function (e) {
     if (lb.hidden) return;
+    if (e.key === 'Tab') { // keep focus inside the viewer
+      var f = [document.getElementById('lbx'), document.getElementById('lbp'), document.getElementById('lbn')], i = f.indexOf(document.activeElement);
+      e.preventDefault(); f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus(); return;
+    }
     if (e.key === 'ArrowRight') show(li + 1);
     else if (e.key === 'ArrowLeft') show(li - 1);
   });
@@ -456,18 +483,28 @@ section.blk{padding:72px 0 8px}
   var conn = navigator.connection || {};
   var LIVE = window.self === window.top && !conn.saveData && !/(^|-)2g$/.test(conn.effectiveType || '');
   // Each preview only loads near the screen and is emptied again when far away, which keeps scrolling smooth
+  // A fresh iframe is swapped in (with its address already set) instead of changing the address of one on the page:
+  // changing it would add a step to the browser's back history every time a preview loads.
+  function swap(f, on) {
+    var n = f.cloneNode(false);
+    n.classList.remove('on');
+    if (on) { n.setAttribute('src', f.getAttribute('data-src')); n.addEventListener('load', function () { n.classList.add('on'); }); }
+    else n.removeAttribute('src');
+    f.parentNode.replaceChild(n, f);
+  }
   var near = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
     es.forEach(function (e) {
-      var f = e.target;
-      if (e.isIntersecting) { if (!f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); }
-      else if (f.getAttribute('src')) { f.removeAttribute('src'); f.classList.remove('on'); }
+      var f = e.target.querySelector('iframe');
+      if (!f) return;
+      if (e.isIntersecting) { if (!f.getAttribute('src')) swap(f, true); }
+      else if (f.getAttribute('src')) swap(f, false);
     });
   }, { rootMargin: '600px 0px' }) : null;
   function watchFrames(root) {
     root.querySelectorAll('iframe[data-src]').forEach(function (f) {
-      if (f._w) return; f._w = 1;
-      f.addEventListener('load', function () { if (f.getAttribute('src')) f.classList.add('on'); });
-      if (near) near.observe(f); else f.setAttribute('src', f.getAttribute('data-src'));
+      var box = f.parentNode;
+      if (box._w) return; box._w = 1;
+      if (near) near.observe(box); else swap(f, true);
     });
   }
   var VW = 1280;
@@ -544,7 +581,10 @@ section.blk{padding:72px 0 8px}
     mark(c);
   }, { passive: true });
 
-  function only(v) { [home, pv, gv, dv].forEach(function (m) { m.hidden = m !== v; }); }
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  var homeY = 0;
+  function jump(y) { window.scrollTo({ top: y, left: 0, behavior: 'instant' }); }
+  function only(v) { if (!home.hidden && v !== home) homeY = window.scrollY; [home, pv, gv, dv].forEach(function (m) { m.hidden = m !== v; }); }
   function route() {
     var h = (location.hash || '').slice(1);
     closeLb();
@@ -559,11 +599,11 @@ section.blk{padding:72px 0 8px}
       document.getElementById('d-resume').setAttribute('aria-current', cv ? 'page' : 'false');
       document.getElementById('d-cover-letter').setAttribute('aria-current', cv ? 'false' : 'page');
       document.title = (cv ? 'Resume' : 'Cover letter') + ' — Akosa Chinaza';
-      only(dv); window.scrollTo(0, 0); return;
+      only(dv); jump(0); return;
     }
     if (h === 'gallery') {
       buildGrid(); document.title = 'Gallery — Akosa Chinaza';
-      only(gv); window.scrollTo(0, 0); return;
+      only(gv); jump(0); return;
     }
     var m = h.indexOf('p-') === 0 ? P.filter(function (p) { return 'p-' + p.id === h; })[0] : null;
     if (m) {
@@ -575,15 +615,15 @@ section.blk{padding:72px 0 8px}
       document.title = m.name + ' — Akosa Chinaza';
       renderAll(); only(pv); fitLive();
       watchFrames(document.getElementById('pvart'));
-      window.scrollTo(0, 0); return;
+      jump(0); return;
     }
     document.title = 'Akosa Chinaza — Artist & Frontend Developer';
     var wasHidden = home.hidden;
     only(home);
     requestAnimationFrame(fitLive);
     var el = h && document.getElementById(h);
-    if (el) { if (wasHidden) setTimeout(function () { el.scrollIntoView(); }, 0); }
-    else if (wasHidden) window.scrollTo(0, 0);
+    if (el) { if (wasHidden) requestAnimationFrame(function () { el.scrollIntoView({ behavior: 'instant', block: 'start' }); }); }
+    else if (wasHidden) requestAnimationFrame(function () { jump(homeY); });
   }
   window.addEventListener('hashchange', route);
   route();
@@ -604,8 +644,8 @@ section.blk{padding:72px 0 8px}
   function setMenu(on) {
     ob.setAttribute('aria-expanded', on ? 'true' : 'false');
     document.body.classList.toggle('lock', on); document.body.classList.toggle('menu-on', on);
-    if (on) { menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('open'); document.getElementById('closeMenu').focus({ preventScroll: true }); }); }
-    else { menu.classList.remove('open'); setTimeout(function () { if (!menu.classList.contains('open')) menu.hidden = true; }, 440); if (menu.contains(document.activeElement)) ob.focus({ preventScroll: true }); }
+    if (on) { pushLayer('menu'); menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('open'); document.getElementById('closeMenu').focus({ preventScroll: true }); }); }
+    else { dropLayer('menu'); menu.classList.remove('open'); setTimeout(function () { if (!menu.classList.contains('open')) menu.hidden = true; }, 440); if (menu.contains(document.activeElement)) ob.focus({ preventScroll: true }); }
   }
   ob.addEventListener('click', function () { setMenu(true); });
   // Collapsible: tap the handle, or drag the sheet down, to put it away
@@ -628,7 +668,18 @@ section.blk{padding:72px 0 8px}
   window.addEventListener('mousemove', function (e) { if (dy0 !== null) dMove(e.clientY); });
   window.addEventListener('mouseup', function () { if (dy0 !== null) { if (dy < 4) { dy0 = null; sheet.classList.remove('drag'); sheet.style.transform = ''; return; } dEnd(); } });
   document.getElementById('closeMenu').addEventListener('click', function () { setMenu(false); });
-  menu.querySelectorAll('[data-close]').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  menu.querySelectorAll('[data-close]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var href = a.getAttribute('href');
+      if (!href || layer !== 'menu') { setMenu(false); return; }
+      // swap the menu's history step for the destination, so back goes to where you were, not to the menu
+      e.preventDefault(); layer = null; setMenu(false);
+      try { history.replaceState(null, '', href); } catch (er) { location.hash = href; return; }
+      route();
+      var el = document.getElementById(href.slice(1));
+      if (el && !home.hidden) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); closeLb(); } });
 })();
 </script>
