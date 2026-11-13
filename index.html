@@ -40,7 +40,9 @@ img{max-width:100%}
 .menu{position:fixed;inset:0;z-index:40}
 .scrim{position:absolute;inset:-60px;background:rgba(40,36,30,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity .3s ease}
 .sheet{position:absolute;bottom:0;left:0;right:0;max-height:92vh;max-height:92dvh;overflow-y:auto;overscroll-behavior:contain;background:#fbf9f4;border-radius:22px 22px 0 0;padding:8px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -24px 60px rgba(40,36,30,.18);transform:translateY(104%);transition:transform .42s cubic-bezier(.3,.7,.2,1)}
-.sheet::before{content:'';display:block;width:40px;height:4px;border-radius:2px;background:var(--line);margin:2px auto 4px}
+.grab{display:flex;align-items:center;justify-content:center;width:100%;height:22px;padding:0;margin:0 0 2px;background:none;border:0;cursor:grab;touch-action:none}
+.grab::before{content:'';width:40px;height:4px;border-radius:2px;background:#cfc8ba}
+.sheet.drag{transition:none}
 .menu.open .scrim{opacity:1}
 .menu.open .sheet{transform:none}
 .sheet .row{display:grid;grid-template-columns:44px 1fr auto;align-items:center}
@@ -206,10 +208,10 @@ section.blk{padding:72px 0 8px}
   .wrap{max-width:1160px;padding:0 40px}
   .hdr{padding:10px 40px}
   /* intro: text on the left, the portrait drawn straight onto the page on the right */
-  .intro{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:24px;align-items:end;padding:24px 0 0;min-height:calc(100vh - 66px);max-height:900px}
-  .intro .txt{order:1;padding-bottom:64px}
+  .intro{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:24px;align-items:center;padding:56px 0 0}
+  .intro .txt{order:1;padding-bottom:24px}
   .frame{order:2;border:0;border-radius:0;background:none;aspect-ratio:auto;align-self:stretch;display:flex;align-items:flex-end;justify-content:center}
-  .frame img{mix-blend-mode:multiply;width:100%;height:auto;max-height:calc(100vh - 90px);object-fit:contain;object-position:50% 100%}
+  .frame img{mix-blend-mode:multiply;width:100%;height:auto;max-height:min(calc(100vh - 90px),760px);object-fit:contain;object-position:50% 100%}
   .intro h1{font-size:76px;margin-top:0}
   .role{font-size:19px;margin-bottom:28px}
   .intro p.t{font-size:20px;max-width:560px}
@@ -244,7 +246,8 @@ section.blk{padding:72px 0 8px}
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
   <div class="scrim" data-close></div>
-  <div class="sheet">
+  <div class="sheet" id="sheet">
+    <button class="grab" id="grab" aria-label="Collapse menu"></button>
     <div class="row">
       <button class="iconbtn" id="closeMenu" aria-label="Close menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
       <span></span>
@@ -611,6 +614,25 @@ section.blk{padding:72px 0 8px}
     else { menu.classList.remove('open'); setTimeout(function () { if (!menu.classList.contains('open')) menu.hidden = true; }, 440); if (menu.contains(document.activeElement)) ob.focus({ preventScroll: true }); }
   }
   ob.addEventListener('click', function () { setMenu(true); });
+  // Collapsible: tap the handle, or drag the sheet down, to put it away
+  var sheet = document.getElementById('sheet'), dy0 = null, dy = 0, t0 = 0;
+  document.getElementById('grab').addEventListener('click', function () { setMenu(false); });
+  function dStart(y) { if (sheet.scrollTop > 0) return; dy0 = y; dy = 0; t0 = Date.now(); sheet.classList.add('drag'); }
+  function dMove(y, e) { if (dy0 === null) return; dy = Math.max(0, y - dy0); sheet.style.transform = 'translateY(' + dy + 'px)'; if (dy > 4 && e && e.cancelable) e.preventDefault(); }
+  function dEnd() {
+    if (dy0 === null) return;
+    var fast = dy / Math.max(1, Date.now() - t0) > 0.5;
+    dy0 = null; sheet.classList.remove('drag'); sheet.style.transform = '';
+    if (dy > 90 || (fast && dy > 30)) setMenu(false);
+  }
+  sheet.addEventListener('touchstart', function (e) { dStart(e.touches[0].clientY); }, { passive: true });
+  sheet.addEventListener('touchmove', function (e) { dMove(e.touches[0].clientY, e); }, { passive: false });
+  sheet.addEventListener('touchend', dEnd);
+  sheet.addEventListener('touchcancel', dEnd);
+  var gb = document.getElementById('grab');
+  gb.addEventListener('mousedown', function (e) { dStart(e.clientY); e.preventDefault(); });
+  window.addEventListener('mousemove', function (e) { if (dy0 !== null) dMove(e.clientY); });
+  window.addEventListener('mouseup', function () { if (dy0 !== null) { if (dy < 4) { dy0 = null; sheet.classList.remove('drag'); sheet.style.transform = ''; return; } dEnd(); } });
   document.getElementById('closeMenu').addEventListener('click', function () { setMenu(false); });
   menu.querySelectorAll('[data-close]').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); closeLb(); } });
