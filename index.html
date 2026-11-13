@@ -38,8 +38,9 @@ img{max-width:100%}
 
 /* menu */
 .menu{position:fixed;inset:0;z-index:40}
-.scrim{position:absolute;inset:0;background:rgba(40,36,30,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity .3s ease}
-.sheet{position:absolute;top:0;left:0;right:0;background:#fbf9f4;border-radius:0 0 22px 22px;padding:8px 16px 18px;box-shadow:0 24px 60px rgba(40,36,30,.18);transform:translateY(-104%);transition:transform .42s cubic-bezier(.3,.7,.2,1)}
+.scrim{position:absolute;inset:-60px;background:rgba(40,36,30,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity .3s ease}
+.sheet{position:absolute;bottom:0;left:0;right:0;max-height:92vh;max-height:92dvh;overflow-y:auto;overscroll-behavior:contain;background:#fbf9f4;border-radius:22px 22px 0 0;padding:8px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -24px 60px rgba(40,36,30,.18);transform:translateY(104%);transition:transform .42s cubic-bezier(.3,.7,.2,1)}
+.sheet::before{content:'';display:block;width:40px;height:4px;border-radius:2px;background:var(--line);margin:2px auto 4px}
 .menu.open .scrim{opacity:1}
 .menu.open .sheet{transform:none}
 .sheet .row{display:grid;grid-template-columns:44px 1fr auto;align-items:center}
@@ -49,6 +50,8 @@ img{max-width:100%}
 .menu nav a:hover,.menu nav a:focus-visible{color:var(--fg)}
 .menu nav a i{font-style:italic}
 body.lock{overflow:hidden}
+.hdr{transition:opacity .3s ease}
+body.menu-on .hdr{opacity:0;pointer-events:none}
 
 .wrap{max-width:680px;margin:0 auto;padding:0 20px}
 
@@ -603,7 +606,7 @@ section.blk{padding:72px 0 8px}
   var menu = document.getElementById('menu'), ob = document.getElementById('openMenu');
   function setMenu(on) {
     ob.setAttribute('aria-expanded', on ? 'true' : 'false');
-    document.body.classList.toggle('lock', on);
+    document.body.classList.toggle('lock', on); document.body.classList.toggle('menu-on', on);
     if (on) { menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('open'); document.getElementById('closeMenu').focus({ preventScroll: true }); }); }
     else { menu.classList.remove('open'); setTimeout(function () { if (!menu.classList.contains('open')) menu.hidden = true; }, 440); if (menu.contains(document.activeElement)) ob.focus({ preventScroll: true }); }
   }
