@@ -126,7 +126,9 @@ section.blk{padding:72px 0 8px}
 .ts p .d{color:var(--soft);padding:0 2px}
 
 /* footer */
-.foot{margin-top:56px;border-top:1px solid var(--line);overflow:hidden}
+.walkway{position:relative;height:150px;margin-top:40px;overflow:hidden;pointer-events:none}
+.walker{position:absolute;left:0;bottom:-3px;height:140px;width:auto;will-change:transform;transform:translateX(-200px)}
+.foot{margin-top:0;border-top:1px solid var(--line);overflow:hidden}
 .frow{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-size:15px;color:var(--muted);border-bottom:1px solid var(--line)}
 .big{margin:14px 0 0;font-family:'IM Fell English',Georgia,serif;font-style:italic;font-size:30vw;line-height:1.1;text-align:center;white-space:nowrap;user-select:none;color:var(--fg)}
 .big span{display:inline-block;padding:0 .06em}
@@ -233,6 +235,7 @@ section.blk{padding:72px 0 8px}
   .gv{max-width:1240px}
   .frow{padding:22px 0}
 }
+@media (min-width:900px){.walkway{height:200px;margin-top:64px}.walker{height:190px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.art,.gt img,.gi img{transition:none}}
 </style>
 </head>
@@ -342,6 +345,8 @@ section.blk{padding:72px 0 8px}
     <div class="dl"><a class="visit" id="dlink" href="docs/Akosa%20Chinazaekpere%20Resume.pdf" download="Akosa Chinazaekpere Resume.pdf">Download PDF</a></div>
   </div>
 </main>
+
+<div class="walkway" id="walkway" aria-hidden="true"><img class="walker" id="walker" src="img/walk-still.webp" data-anim="img/walk.webp" alt="" width="324" height="260"></div>
 
 <footer class="foot" id="contact">
   <div class="wrap">
@@ -639,6 +644,28 @@ section.blk{padding:72px 0 8px}
   fitBig();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBig);
   var fr = 0; window.addEventListener('resize', function () { cancelAnimationFrame(fr); fr = requestAnimationFrame(function () { fitLive(); if (!pv.hidden) fitStills(); fitBig(); }); });
+
+  // Walker above the footer: crosses the page at walking pace, loops, and rests when off screen
+  (function () {
+    var way = document.getElementById('walkway'), w = document.getElementById('walker');
+    if (!way || !w) return;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { w.style.transform = 'translateX(' + (way.clientWidth / 2 - w.offsetWidth / 2) + 'px)'; return; }
+    var x = null, last = 0, on = false, raf = 0, loaded = false;
+    function step(t) {
+      var dt = last ? Math.min(.05, (t - last) / 1000) : 0; last = t;
+      var h = w.offsetHeight || 140, ww = w.offsetWidth || h * 1.25;
+      if (x === null) x = -ww;
+      x += h * 1.3 * dt;
+      if (x > way.clientWidth + ww * .1) x = -ww * 1.6; // out the right edge, a short pause, back in from the left
+      w.style.transform = 'translateX(' + x.toFixed(1) + 'px)';
+      if (on) raf = requestAnimationFrame(step);
+    }
+    function start() { if (on) return; on = true; last = 0; if (!loaded) { loaded = true; w.src = w.getAttribute('data-anim'); } raf = requestAnimationFrame(step); }
+    function stop() { on = false; cancelAnimationFrame(raf); }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es[0].isIntersecting && !document.hidden ? start() : stop(); }, { rootMargin: '200px 0px' }).observe(way);
+    else start();
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else if (way.getBoundingClientRect().top < innerHeight + 200) start(); });
+  })();
 
   // Menu
   var menu = document.getElementById('menu'), ob = document.getElementById('openMenu');
